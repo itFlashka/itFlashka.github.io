@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>itFlashka</title>
+	<link rel="icon" href=".\resources\itFlashka.png" type="image/png">
+	<style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #0b1120 0%, #1a2639 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-weight: 300;
+            font-size: 2.8rem;
+            letter-spacing: 4px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            margin-bottom: 50px;
+            border-bottom: 2px solid #3a4b6b;
+            padding-bottom: 12px;
+        }
+
+        h1 span {
+            font-weight: 600;
+            background: linear-gradient(135deg, #00b4ff, #6c8cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Контейнер карточек */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Стили карточки */
+        .card {
+            background: rgba(22, 34, 58, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            padding: 30px 25px 35px;
+            width: 260px;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.7);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(1);
+            cursor: default;
+            color: #eef5ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            /* Для псевдоэлемента затемнения */
+        }
+
+        /* Псевдоэлемент для затемнения сзади */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            right: 10px;
+            bottom: -10px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 32px;
+            filter: blur(25px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        /* Эффект при наведении: увеличение + затемнение сзади */
+        .card:hover {
+            transform: scale(1.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.9);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Иконки Windows */
+        .card img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            font-size: 2.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .card h2 small {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.7;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .card .version-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 40px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin: 8px 0 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #b6ccff;
+        }
+
+        .card .description {
+            font-size: 0.95rem;
+            opacity: 0.75;
+            line-height: 1.5;
+            margin: 6px 0 18px;
+            padding: 0 4px;
+        }
+
+        .card .download-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 60px;
+            color: #d6e5ff;
+            font-weight: 500;
+            font-size: 1rem;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
+            margin-top: 6px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card .download-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #6c8cff;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(60, 120, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Индивидуальные акценты для карточек */
+        .card-win7 {
+            background: rgba(28, 40, 68, 0.8);
+        }
+        .card-win7 .version-tag {
+            background: rgba(0, 180, 255, 0.15);
+            border-color: rgba(0, 180, 255, 0.2);
+            color: #8fcbff;
+        }
+
+        .card-win10 {
+            background: rgba(20, 44, 78, 0.8);
+        }
+        .card-win10 .version-tag {
+            background: rgba(0, 120, 215, 0.15);
+            border-color: rgba(0, 120, 215, 0.2);
+            color: #86bfff;
+        }
+
+        .card-win11 {
+            background: rgba(30, 30, 70, 0.8);
+        }
+        .card-win11 .version-tag {
+            background: rgba(0, 80, 200, 0.15);
+            border-color: rgba(0, 80, 200, 0.2);
+            color: #9ac0ff;
+        }
+
+        .card-win7 .download-btn {
+            border-color: rgba(0, 150, 255, 0.25);
+        }
+        .card-win10 .download-btn {
+            border-color: rgba(0, 140, 255, 0.25);
+        }
+        .card-win11 .download-btn {
+            border-color: rgba(60, 120, 255, 0.25);
+        }
+
+        /* Адаптив */
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .card {
+                width: 220px;
+                padding: 24px 18px 28px;
+            }
+            .card img {
+                width: 72px;
+                height: 72px;
+            }
+            .card h2 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                gap: 22px;
+            }
+            .card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        .footer-note {
+            margin-top: 45px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <h1><span>itFlashka</span> / Скачайте <span>Windows</span></h1>
+
+    <div class="card-container">
+        <!-- Карточка Windows 7 -->
+        <div class="card card-win7">
+            <img src=".\resources\7.png"
+                 alt="Windows 7 логотип" 
+                 loading="lazy">
+            <h2>Windows 7 <small>Home Premium</small></h2>
+            <span class="version-tag">Версия 6.1 с SP1</span>
+            <p class="description">Классическая стабильность и знакомый интерфейс. Для старых ПК.</p>
+            <a href="https://drive.google.com/file/d/1VR-Cra0-YZD3AdMsAuHX_DBH5m4SoXcm/view?usp=sharing" class="download-btn">⬇ Скачать .iso</a>
+        </div>
+
+        <!-- Карточка Windows 10 -->
+        <div class="card card-win10">
+            <img src=".\resources\10.png"
+                 alt="Windows 10 логотип"
+                 loading="lazy">
+            <h2>Windows 10 <small>Home, Pro</small></h2>
+            <span class="version-tag">Версия 22H2</span>
+            <p class="description">Современная ОС с поддержкой DirectX 12 и безопасностью.</p>
+            <a href="https://drive.google.com/file/d/17x29tnnbGMZUGGS-1rXYiEhea4TZWhZS/view?usp=sharing" class="download-btn">⬇ Скачать .iso</a>
+        </div>
+
+        <!-- Карточка Windows 11 -->
+        <div class="card card-win11">
+            <img src=".\resources\11.png"
+                 alt="Windows 11 логотип"
+                 loading="lazy">
+            <h2>Windows 11 <small>Home, Pro</small></h2>
+            <span class="version-tag">Версия 23H2</span>
+            <p class="description">Новый дизайн и возможность установки на несовместимые устройства.</p>
+            <a href="https://drive.google.com/file/d/1EF1LVqXDDaoAHfs7j2MV06HoEBzb_B8K/view?usp=sharing" class="download-btn">⬇ Скачать .iso</a>
+        </div>
+    </div>
+
+    <div class="footer-note">Все авторские права принадлежат Microsoft, данный проект создан исключительно в учебных целях</div>
+
+    <script>
+        (function() {
+            const buttons = document.querySelectorAll('.download-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    this.textContent = '⏳ Загрузка...';
+                    this.style.opacity = '0.7';
+                    setTimeout(() => {
+                        this.textContent = '⬇ Скачать .iso';
+                        this.style.opacity = '1';
+                    }, 1500);
+                });
+            });
+        })();
+    </script>
+  </body>
+</body>
+</html>
