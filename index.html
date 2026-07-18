@@ -207,6 +207,23 @@
             color: #9ac0ff;
         }
 
+        /* Стили для карточки BestWinTweaker */
+        .card-bwt {
+            background: rgba(50, 30, 70, 0.8);
+        }
+        .card-bwt .version-tag {
+            background: rgba(180, 80, 255, 0.15);
+            border-color: rgba(180, 80, 255, 0.2);
+            color: #d4a0ff;
+        }
+        .card-bwt .download-btn {
+            border-color: rgba(180, 80, 255, 0.25);
+        }
+        .card-bwt .download-btn:hover {
+            border-color: #b060ff;
+            box-shadow: 0 8px 20px rgba(180, 80, 255, 0.3);
+        }
+
         .card-win7 .download-btn {
             border-color: rgba(0, 150, 255, 0.25);
         }
@@ -289,9 +306,20 @@
             <p class="description">Новый дизайн и возможность установки на несовместимые устройства.</p>
             <a href="https://drive.google.com/file/d/1EF1LVqXDDaoAHfs7j2MV06HoEBzb_B8K/view?usp=sharing" class="download-btn">⬇ Скачать .iso</a>
         </div>
+		
+		<!-- Карточка BestWinTweaker -->
+        <div class="card card-bwt">
+            <img src=".\resources\bwt.png"
+                 alt="bwt логотип"
+                 loading="lazy">
+            <h2>BestWinTweaker <small>Для Windows 7-11</small></h2>
+            <span class="version-tag">Версия 1.9.14</span>
+            <p class="description">Системный монитор и оптимизатор.</p>
+            <a href="https://github.com/VladislavBanitsky/BestWinTweaker/releases/latest" class="download-btn">⬇ Скачать .exe</a>
+        </div>
     </div>
 
-    <div class="footer-note">Все авторские права принадлежат Microsoft, данный проект создан исключительно в учебных целях</div>
+    <div class="footer-note">Все авторские права на Windows принадлежат Microsoft, данный проект создан исключительно в учебных целях</div>
 
     <script>
         (function() {
