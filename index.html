@@ -234,6 +234,23 @@
             border-color: rgba(60, 120, 255, 0.25);
         }
 
+        /* Оранжевый стиль для карточки autounattend.xml */
+        .card-autounattend {
+            background: rgba(70, 40, 10, 0.8);
+        }
+        .card-autounattend .version-tag {
+            background: rgba(255, 140, 0, 0.15);
+            border-color: rgba(255, 140, 0, 0.2);
+            color: #ffb347;
+        }
+        .card-autounattend .download-btn {
+            border-color: rgba(255, 140, 0, 0.25);
+        }
+        .card-autounattend .download-btn:hover {
+            border-color: #ff8c00;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+        }
+
         /* Адаптив */
         @media (max-width: 700px) {
             h1 {
@@ -316,6 +333,17 @@
             <span class="version-tag">Версия 1.9.14</span>
             <p class="description">Системный монитор и оптимизатор.</p>
             <a href="https://github.com/VladislavBanitsky/BestWinTweaker/releases/latest" class="download-btn">⬇ Скачать .exe</a>
+        </div>
+		
+		<!-- Карточка autounattend -->
+        <div class="card card-autounattend">
+            <img src=".\resources\lite.png"
+                 alt="lite логотип"
+                 loading="lazy">
+            <h2>autounattend <small>Для создания Lite Windows</small></h2>
+            <span class="version-tag">Версия 1.0</span>
+            <p class="description">Закиньте в корень ISO или загрузочной флешки</p>
+            <a href="https://drive.google.com/file/d/1iVUybz0FzYW2hoI8xTamFw62hYwzTIg6/view?usp=sharing" class="download-btn">⬇ Скачать .xml</a>
         </div>
     </div>
 
