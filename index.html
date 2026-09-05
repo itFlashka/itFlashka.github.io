@@ -382,21 +382,6 @@
 
     <div class="footer-note">Все авторские права на Windows принадлежат Microsoft, данный проект создан исключительно в учебных целях</div>
 
-    <script>
-        (function() {
-            const buttons = document.querySelectorAll('.download-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    this.textContent = '⏳ Загрузка...';
-                    this.style.opacity = '0.7';
-                    setTimeout(() => {
-                        this.textContent = '⬇ Скачать .iso';
-                        this.style.opacity = '1';
-                    }, 1500);
-                });
-            });
-        })();
-    </script>
-  </body>
+    <script src="script.js"></script>
 </body>
 </html>
