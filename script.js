@@ -141,7 +141,7 @@ async function updateVersionDisplay(projectKey) {
 
     if (version) {
         // Убираем 'v' из начала, если есть
-        const cleanVersion = version.replace(/^v/, '');
+        const cleanVersion = version.replace(/^v\.?/, '');
         versionTag.textContent = `${config.label} ${cleanVersion}`;
     } else {
         // Если не удалось получить версию, показываем стандартную
