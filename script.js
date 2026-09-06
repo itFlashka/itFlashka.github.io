@@ -14,13 +14,12 @@ const PROJECTS_CONFIG = {
         defaultVersion: '1.3',
         label: 'Версия'
     },
-    // Добавьте новые проекты сюда по аналогии
-    // 'myproject': {
-    //     selector: '.card-myproject .version-tag',
-    //     repo: 'username/repository',
-    //     defaultVersion: '1.0.0',
-    //     label: 'Версия'
-    // }
+    'winweather': {
+        selector: '.card-winweather .version-tag',
+        repo: 'VladislavBanitsky/WinWeather',
+        defaultVersion: '1.1.4',
+        label: 'Версия'
+    }
 };
 
 
@@ -30,6 +29,7 @@ const CARD_COLORS = {
     'card-win10': { r: 20, g: 44, b: 78, accent: [0, 120, 215] },
     'card-win11': { r: 30, g: 30, b: 70, accent: [0, 80, 200] },
     'card-bwt': { r: 50, g: 30, b: 70, accent: [180, 80, 255] },
+    'card-winweather': { r: 20, g: 60, b: 100, accent: [70, 180, 255] },
     'card-autounattend': { r: 70, g: 40, b: 10, accent: [255, 140, 0] },
     'card-winpe': { r: 20, g: 60, b: 50, accent: [0, 200, 150] },
     'card-11arm': { r: 40, g: 20, b: 60, accent: [150, 80, 255] },
