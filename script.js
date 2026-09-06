@@ -318,70 +318,6 @@ function generateGradientsForCards() {
     });
 }
 
-// Функция для добавления новой карточки с автоматической генерацией градиента
-window.addCard = function(cardClass, baseColor, accentColor, opacity = 0.85) {
-    // Добавляем в конфигурацию цветов
-    CARD_COLORS[cardClass] = {
-        r: baseColor.r,
-        g: baseColor.g,
-        b: baseColor.b,
-        accent: accentColor
-    };
-
-    // Находим все карточки с этим классом и применяем градиент
-    const cards = document.querySelectorAll(`.${cardClass}`);
-    const gradientGenerator = new GradientGenerator();
-
-    cards.forEach(card => {
-        gradientGenerator.applyGradientToCard(card, cardClass);
-    });
-
-    console.log(`✅ Градиент для ${cardClass} сгенерирован и применен`);
-};
-
-// Функция для регенерации градиентов
-window.regenerateGradients = function() {
-    generateGradientsForCards();
-    console.log('🔄 Градиенты перегенерированы!');
-};
-
-// Функция для ручного обновления версий
-window.forceUpdateVersions = function() {
-    const versionManager = new VersionManager();
-    versionManager.clearAllCache();
-    updateAllVersions();
-    console.log('✅ Версии обновлены!');
-};
-
-// Функция для добавления нового проекта в конфигурацию (динамически)
-window.addProject = function(key, repo, selector, defaultVersion = '1.0.0', label = 'Версия') {
-    PROJECTS_CONFIG[key] = {
-        selector: selector,
-        repo: repo,
-        defaultVersion: defaultVersion,
-        label: label
-    };
-    console.log(`✅ Проект "${key}" добавлен в конфигурацию`);
-    // Обновляем версию для нового проекта
-    updateVersionDisplay(key);
-};
-
-// Функция для отображения статуса всех проектов
-window.showVersionStatus = function() {
-    const status = {};
-    Object.keys(PROJECTS_CONFIG).forEach(key => {
-        const config = PROJECTS_CONFIG[key];
-        const element = document.querySelector(config.selector);
-        status[key] = {
-            repo: config.repo,
-            currentVersion: element ? element.textContent : 'Элемент не найден',
-            defaultVersion: config.defaultVersion
-        };
-    });
-    console.table(status);
-    return status;
-};
-
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     // Генерируем градиенты для карточек
@@ -396,9 +332,4 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Проект инициализирован!');
     console.log('🎨 Градиенты сгенерированы автоматически');
     console.log('📦 Доступные проекты:', Object.keys(PROJECTS_CONFIG));
-    console.log('💡 Используйте forceUpdateVersions() для обновления кэша');
-    console.log('💡 Используйте showVersionStatus() для просмотра статуса');
-    console.log('💡 Используйте addProject() для добавления нового проекта');
-    console.log('💡 Используйте addCard() для добавления новой карточки с градиентом');
-    console.log('💡 Используйте regenerateGradients() для перегенерации градиентов');
 });
