@@ -19,6 +19,12 @@ const PROJECTS_CONFIG = {
         repo: 'VladislavBanitsky/WinWeather',
         defaultVersion: '1.1.4',
         label: 'Версия'
+    },
+    'wis': {
+        selector: '.card-wis .version-tag',
+        repo: 'VladislavBanitsky/Windows-ISO-Slimmer',
+        defaultVersion: '0.1.0',
+        label: 'Версия'
     }
 };
 
@@ -33,7 +39,8 @@ const CARD_COLORS = {
     'card-autounattend': { r: 70, g: 40, b: 10, accent: [255, 140, 0] },
     'card-winpe': { r: 20, g: 60, b: 50, accent: [0, 200, 150] },
     'card-11arm': { r: 40, g: 20, b: 60, accent: [150, 80, 255] },
-    'card-11new': { r: 25, g: 50, b: 75, accent: [50, 150, 255] }
+    'card-11new': { r: 25, g: 50, b: 75, accent: [50, 150, 255] },
+	'card-wis': { r: 25, g: 45, b: 65, accent: [100, 180, 255] }
 };
 
 // Класс для генерации градиентов
